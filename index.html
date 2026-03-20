@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GigGuard - AI Insurance</title>
+
+<style>
+body {
+  font-family: Arial;
+  margin: 0;
+  background: #f4f6f9;
+}
+
+/* Navbar */
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #333;
+}
+
+/* Layout */
+.container {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+}
+
+.left {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.main {
+  width: 75%;
+}
+
+/* Cards */
+.card {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Premium */
+.premium {
+  background: linear-gradient(135deg, orange, #ff7a00);
+  color: white;
+}
+
+/* Alert */
+.alert {
+  background: linear-gradient(135deg, #2b6cb0, #3182ce);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+/* Bottom */
+.bottom {
+  display: flex;
+  gap: 20px;
+}
+
+/* Claims */
+.claim-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.paid {
+  color: orange;
+  font-weight: bold;
+}
+
+/* Button */
+button {
+  margin-top: 15px;
+  padding: 10px;
+  width: 100%;
+  background: orange;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Active */
+.active {
+  color: green;
+  font-weight: bold;
+}
+
+/* Login Page */
+.login {
+  display: none;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.login input {
+  padding: 10px;
+  margin: 10px;
+  width: 200px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>GigGuard</h2>
+  <nav>
+    <a href="#" onclick="showDashboard()">Dashboard</a>
+    <a href="#">Claims</a>
+    <a href="#">Settings</a>
+  </nav>
+</header>
+
+<!-- LOGIN -->
+<div class="login" id="loginPage">
+  <h2>Login</h2>
+  <input type="text" placeholder="Name"><br>
+  <input type="password" placeholder="Password"><br>
+  <button onclick="login()">Login</button>
+</div>
+
+<!-- DASHBOARD -->
+<div class="container" id="dashboard">
+
+  <div class="left">
+    <div class="card premium">
+      <h3>Weekly Premium</h3>
+      <h1>₹299</h1>
+    </div>
+
+    <div class="card">
+      <h3>Coverage Status</h3>
+      <p class="active">✔ Active Protection</p>
+      <p>Next Renewal: 7 days</p>
+    </div>
+
+    <div class="card">
+      <h3>Protected Earnings</h3>
+      <h1 id="earnings">₹8000</h1>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <div class="alert" id="alertBox">
+      <h3>🌧 Heavy Rain Detected</h3>
+      <p>Deliveries at risk</p>
+      <p class="active">✔ Claim will be auto-triggered</p>
+    </div>
+
+    <div class="bottom">
+
+      <div class="card">
+        <h3>Claims</h3>
+        <div id="claimsList">
+          <div class="claim-item">
+            <span>Flood</span>
+            <span class="paid">₹3000</span>
+          </div>
+        </div>
+        <button onclick="claim()">File Claim</button>
+      </div>
+
+      <div class="card">
+        <h3>Analytics</h3>
+        <p>Total Payouts: ₹12,400</p>
+        <p>Days Covered: 32</p>
+        <p>Alerts: 5</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+// LOGIN FUNCTION
+function login() {
+  document.getElementById("loginPage").style.display = "none";
+  document.getElementById("dashboard").style.display = "flex";
+}
+
+// SHOW DASHBOARD
+function showDashboard() {
+  document.getElementById("dashboard").style.display = "flex";
+}
+
+// CLAIM FUNCTION (SIMULATION)
+function claim() {
+  let list = document.getElementById("claimsList");
+
+  let newClaim = document.createElement("div");
+  newClaim.className = "claim-item";
+  newClaim.innerHTML = "<span>Rain Claim</span><span class='paid'>₹2500</span>";
+
+  list.appendChild(newClaim);
+
+  alert("✅ Claim Triggered Automatically!");
+}
+
+// AUTO ALERT CHANGE (SIMULATING AI)
+setInterval(() => {
+  let alerts = ["🌧 Heavy Rain", "🔥 Heatwave", "🌫 Pollution High"];
+  let random = alerts[Math.floor(Math.random() * alerts.length)];
+  document.getElementById("alertBox").children[0].innerText = random + " Detected";
+}, 5000);
+
+</script>
+
+</body>
+</html>
